@@ -1,0 +1,195 @@
+.scrapUpgrade {
+    width : 202px;
+    height: 150px;
+    color : #1aff00;
+    font-size: 12px;
+    transition-duration : 0.2s;
+    border-style: solid;
+    border-width: 3px;
+    border-color : #13b900;
+    background-color: rgba(0, 79, 0, 255);
+}
+
+
+.goldenScrapUpgrade {
+    width : 202px;
+    height: 150px;
+    color : #ffffff;
+    font-size: 12px;
+    transition-duration : 0.2s;
+    border-style: solid;
+    border-width: 3px;
+    border-color : #ffee00;
+}
+
+.goldenScrapUpgradeIsAffordable {
+    background-color : #526100;
+    color : #ffffff;
+}
+
+.goldenScrapUpgradeIsNotBought {
+    background-color :  #6b6b6b;
+    color : #000000;
+}
+
+.goldenScrapUpgradeIsBought {
+    background-color: rgb(0, 255, 0);
+    color: rgb(0, 0, 0);
+}
+
+.repeatableMagnetUpgrade {
+    width : 242px;
+    height: 181px;
+    transition-duration : 0.2s;
+    font-size: 12px;
+    border-style: solid;
+    border-width: 3px;
+    border-image: linear-gradient(120deg, rgb(0, 0, 255) 50%, rgb(220, 0, 0) 50%);
+    border-image-slice: 1; 
+}
+
+.repeatableMagnetUpgradeIsAffordable {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(120deg, rgb(110, 0, 0) , rgb(0, 0, 128) );
+    color: rgb(255, 255, 255);
+}
+
+.repeatableMagnetUpgradeIsNotAffordable {
+    background-color: #6b6b6b;
+    color: #000000;
+}
+
+
+
+
+
+
+
+
+.repeatableBrickUpgrade {
+    width : 242px;
+    height: 181px;
+    transition-duration : 0.2s;
+    font-size: 12px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(255, 115, 0)
+}
+
+.repeatableBrickUpgradeIsAffordable {
+    background-color: rgb(71, 32, 0);
+    color: rgb(255, 255, 255);
+}
+
+.repeatableBrickUpgradeIsNotAffordable {
+    background-color: #6b6b6b;
+    color: #000000;
+}
+
+
+
+
+
+
+.brickUpgrade {
+    width : 202px;
+    height: 150px;
+    font-size: 12px;
+    transition-duration : 0.2s;
+    border-style: solid;
+    border-width: 3px;
+    border-color : rgb(255, 115, 0);
+}
+
+.brickUpgradeIsAffordable {
+    background-color : rgb(71, 32, 0);
+    color : #ffffff;
+}
+
+.brickUpgradeIsNotBought {
+    background-color :  #6b6b6b;
+    color : #000000;
+}
+
+.brickUpgradeIsBought {
+    background-color: rgb(0, 255, 0);
+    color: rgb(0, 0, 0);
+}
+
+
+
+
+
+
+
+
+.magnetUpgrade {
+    width : 202px;
+    height: 150px;
+    transition-duration : 0.2s;
+    font-size: 12px;
+    border-style: solid;
+    border-width: 3px;
+    border-image: linear-gradient(120deg, rgb(0, 0, 255) 50%, rgb(220, 0, 0) 50%);
+    border-image-slice: 1; 
+}
+
+.magnetUpgradeIsAffordable {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(120deg, rgb(110, 0, 0) , rgb(0, 0, 128) );
+    color: rgb(255, 255, 255);
+}
+
+.magnetUpgradeIsNotBought {
+    background-color: #6b6b6b;
+    color: #000000;
+}
+
+.magnetUpgradeIsBought {
+    background-color: rgb(0, 255, 0);
+    color: rgb(0, 0, 0);
+}
+
+
+
+
+
+
+.boosterUpgrade {
+    width : 202px;
+    height: 150px;
+    font-size: 12px;
+    transition-duration : 0.2s;
+    border-style: solid;
+    border-width: 3px;
+    border-image: linear-gradient(60deg, rgb(0, 0, 255) 50%,  rgb(255, 165, 0) 50%);
+    border-image-slice: 1;
+}
+
+.boosterUpgradeIsNotBought {
+    background-color: #6b6b6b;
+    color: #000000;
+}
+
+.boosterUpgradeIsAffordable {
+    animation: boosterAnimation 5s infinite;
+    background-color: #000000;
+}
+.boosterUpgradeIsBought {
+    color: #000000;
+    background-color: #00ff00;
+}
+
+
+
+
+
+
+@keyframes boosterAnimation {
+    25%, 50% {
+        color: rgb(0, 132, 255)
+    }
+    75%, 100%, 0% {
+        color: rgb(255, 165, 0)
+    }
+}

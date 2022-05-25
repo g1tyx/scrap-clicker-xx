@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="keywords" content="games, idle, incremental, scrap, clicker, clicker++"/>
+    <meta name="description" content="Incremental game with huge numbers!">
+    <meta name="theme-color" content="#006e05"/>
+
+
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/modals.css" />
+    <link rel="stylesheet" type="text/css" href="css/upgrades.css" />
+    <link rel="stylesheet" type="text/css" href="css/notification.css" />
+    <link rel="stylesheet" type="text/css" href="css/milestones.css" />
+    <link rel="stylesheet" type="text/css" href="css/automation.css" />
+    <link rel="stylesheet" type="text/css" href="css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="css/tooltip.css" />
+    <link rel="stylesheet" type="text/css" href="css/anchor.css" />
+    <link rel="stylesheet" type="text/css" href="css/warning.css" />
+    <link rel="stylesheet" type="text/css" href="css/mobile.css" />
+    <link rel="stylesheet" type="text/css" href="css/changelog.css" />
+    <link rel="stylesheet" type="text/css" href="css/scrollbar.css" />
+    <link rel="stylesheet" type="text/css" href="css/challenge.css" />
+    <link rel="stylesheet" type="text/css" href="css/yes_and_no_buttons.css" />
+    <title>Scrap Clicker++</title>
+</head>
+<body>
+    <div id="topbar">
+        <div id="news"></div>
+    </div>
+    <button id="productionTab" class="buttonTab productionButton" onclick="tab('production')">Production</button>
+    <button id="prestigeTab" class="buttonTab prestigeButton" onclick="tab('prestige')">Prestige</button>
+    <button id="boostersTab" class="buttonTab boostersButton" onclick="tab('boosters')">Boosters</button>
+    <button id="settingsTab" class="buttonTab normalButton" onclick="tab('settings')">More</button>
+    <button id="settingsTab" class="buttonTab normalButton" onclick="tab('achievements')">Achievements</button>
+    <br>
+    <br>
+
+
+    <center>
+
+
+
+        <div id="production">
+            <div>
+                <button class="productionButton" id="scrapsSubTab" onclick="subTab3('subProduction1')">Scraps</button>
+                <button class="magnetButton" id="magnetsSubTab" onclick="subTab3('subProduction2')">Magnets</button>
+                <button class="brickButton" id="bricksSubTab" onclick="subTab3('subProduction3')">Bricks</button>
+                <button class="productionButton" id="factorySubTab" onclick="subTab3('subProduction4')">Factory lists</button>
+            </div>
+            <div id="InDecayverse"></div>
+            <div id="Decay">You have <span id="DecayAmount"></span> decay. They are dividing your scrap gain by <span id="DecayEffect"></span><br></div>
+            <div id="SuperDecay">You have <span id="SuperDecayAmount"></span> super decay. They are dividing your all pre-booster resources by <span id="SuperDecayEffect"></span> per second<br></div>
+            
+            
+            <div id="subProduction1">
+                <div>You have <span id="ScrapAmount" class="bigger1">0</span> Scraps (+<span id="ScrapsPerSecond" class="bigger2">0</span>/s)</div>
+                <center>
+                    <table style="width: 100%; text-align: center; overflow: auto;">  
+                        <tr>
+                            <td style="width: 50%;"><div>You have <span id="ScrapFactoryAmount" class="bigger2">0</span> scrap factories.</div></td>
+                            <td style="width: 50%;" class="tooltip"><div onclick="document.getElementById('multiplicatorDetails').className = 'popup shown'">You have <span id="MultiplicatorAmount" class="bigger2">0</span> <span id="BrokenMultiplicator"></span> multiplicators.<span class="tooltiptext">Click here to see details</span></div></td>
+                        </tr>
+                    </table>   
+                
+                    <button onclick="clickScrap()" id="ScrapsPerClick" class="productionButton">Click to gain<br>1 Scraps</button>
+                    <br><br><br>
+                    <button onclick="buyMultiplicator('max'); buyFactory('max', 0)" class="productionButton">Max All (M)</button><br><br>
+                
+                    <table style="text-align: center;">
+                        <tr>
+                            <td><button onclick="buyMultiplicator('singles')" id="BuyScrapBoostDisplay" class="scrapUpgrade">Buy Multiplicator<br>100 Scraps</button></td>
+                            <td><button onclick="buyFactory('singles', 0)" id="BuyFactoryDisplay" class="scrapUpgrade">Buy Factory<br>10 Scraps</button></td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+
+            <div id="subProduction2">
+                <center>
+                    
+                    <div id="magnetsLockedText" style="position: relative; top: 100px;"><span style="font-size: 30px;">LOCKED</span><br>This feature will be unlocked when you have 6th Golden Scrap Upgrade<br>Come back if you have it ;)</div>
+                    
+                    <div id="magnetsScreen">
+                        <table class="magnetTable" style="width: 100%; text-align: center;">
+                            <tr>
+                                <td style="width: 50%;"><center><div>You have <span id="MagnetAmount" class="magnet">0.0</span> Magnets</div><br><button onclick="clickMagnet()" class="magnetButton" >Click to gain<br><span id="MagnetsPerClick"></span> Magnets</button></center></td>
+                                <td style="width: 50%;"><center><div>You have <span id="SteelBeamAmount" class="steelBeams">0.0</span> Steel Beams</div><br><button onclick="clickSteelBeam()" class="steelBeamButton">Click to gain<br><span id="SteelBeamsPerClick"></span> Steel Beams</button></center></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%;"><center><div>You have <span id="ElectronAmount"  class="electronText" style="font-size: 25px;"></span> electrons<br>Multiplying your Magnet gain by <span id="ElectronEffect"></span>x<br><br></div><button onclick="magnetSacrifice()" class="electronButton">Sacrifice all your magnets<br>for <span id="PendingElectrons"></span> Electrons</button></center></td>
+                                <td style="width: 50%;"><center><div>You have <span id="ProtonAmount" class="protonText" style="font-size: 25px;"></span> protons<br>Multiplying your Steel Beam gain by <span id="ProtonEffect"></span>x<br><br></div><button onclick="steelBeamSacrifice()"  class="protonButton">Sacrifice all your steel beams<br>for <span id="PendingProtons"></span> Protons</button></center></td>
+                            </tr>
+                        </table>
+                        <div style="font-size: 25px;"><strong>Repeatable Magnet Upgrades (RMU)</strong></div>
+                        <br>
+                        <button class="magnetButton" onclick="maxAllRMUs()">Max All RMUs</button>
+                        <br><br>
+                        <table>
+                            <tr>
+                                <td><button id="RepeatableMagnetUpgrade1" class="repeatableMagnetUpgrade repeatableMagnetUpgradeIsNotAffordable" onclick="buyRepeatableMagnetUpgrade('singles', 0)">You gain more Magnets and Steel Beams<br>Cost: <span id="RepeatableMagnetUpgradeCost1"></span> Magnets and Steel Beams<br>Level: <span id="RepeatableMagnetUpgradeLevel1"></span><br>Currently: <span id="RepeatableMagnetUpgradeEffect1"></span>x</button></td>
+                                <td><button id="RepeatableMagnetUpgrade2" class="repeatableMagnetUpgrade repeatableMagnetUpgradeIsNotAffordable" onclick="buyRepeatableMagnetUpgrade('singles', 1)">You gain more Protons and Electrons<br>Cost: <span id="RepeatableMagnetUpgradeCost2"></span> Protons and Electrons<br>Level: <span id="RepeatableMagnetUpgradeLevel2"></span><br>Currently: <span id="RepeatableMagnetUpgradeEffect2"></span>x</button></td>
+                                <td><button id="RepeatableMagnetUpgrade3" class="repeatableMagnetUpgrade repeatableMagnetUpgradeIsNotAffordable" onclick="buyRepeatableMagnetUpgrade('singles', 2)">You gain Golden scraps on prestige every second<br>Cost: <span id="RepeatableMagnetUpgradeCost3"></span> Magnets and Protons<br>Level: <span id="RepeatableMagnetUpgradeLevel3"></span><br>Currently: +<span id="RepeatableMagnetUpgradeEffect3"></span>%/s</button></td>
+                                <td><button id="RepeatableMagnetUpgrade4" class="repeatableMagnetUpgrade repeatableMagnetUpgradeIsNotAffordable" onclick="buyRepeatableMagnetUpgrade('singles', 3)">You gain more Golden scraps<br>Cost: <span id="RepeatableMagnetUpgradeCost4"></span> Steel Beams and Electrons<br>Level: <span id="RepeatableMagnetUpgradeLevel4"></span><br>Currently: <span id="RepeatableMagnetUpgradeEffect4"></span>x</button></td>
+                            </tr>
+                        </table>
+                        <br>
+                        <div style="font-size: 25px;"><strong>Normal Magnet Upgrades (NMU)</strong></div>
+                        <div id="NMUAutobuyer"><br><button class="magnetButton" onclick="switchLever('NMU Autobuyer')">NMU Autobuyer: <span id="NMUAutobuyerStatus"></span></button><br><br></div>
+                        <table id="NMURow1">
+                            <tr>
+                                <td><button id="MagnetUpgrade1" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(0)">You gain more Magnets and Steel beams based on prestiges<br>Currently: <span id="NormalMagnetUpgradeEffect1"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost1"></span> Magnets</button></td>
+                                <td><button id="MagnetUpgrade2" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(1)">Golden Scrap effect uses better formula<br><span id="NormalMagnetUpgradeEffect2"></span><br>Cost: <span id="NormalMagnetUpgradeCost2"></span> Steel Beams</button></td>
+                                <td><button id="MagnetUpgrade3" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(2)">Scraps generate extra levels of 1st RMU<br>Currently: <span id="NormalMagnetUpgradeEffect3"></span><br>Cost: <span id="NormalMagnetUpgradeCost3"></span> Electrons</button></td>
+                                <td><button id="MagnetUpgrade4" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(3)">Golden scraps boost 3rd NMU Effect<br>Currently: <span id="NormalMagnetUpgradeEffect4"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost4"></span> Protons</button></td>
+                            </tr>
+                        </table>
+                        <table id="NMURow2">
+                            <tr>
+                                <td id="MoreNMUpgrades1"><button id="MagnetUpgrade5" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(4)">Total Super Factories boost extra scrap factory gain<br>Currently: <span id="NormalMagnetUpgradeEffect5"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost5"></span> Magnets</button></td>
+                                <td id="MoreNMUpgrades1"><button id="MagnetUpgrade6" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(5)">Total Super Factories boost 3rd NMU effect<br>Currently: <span id="NormalMagnetUpgradeEffect6"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost6"></span> Steel Beams</button></td>
+                                <td id="MoreNMUpgrades1"><button id="MagnetUpgrade7" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(6)">Electrons and Protons boost each other<br><br><!--Currently: <span id="NormalMagnetUpgradeEffect7"></span>x<br>-->Cost: <span id="NormalMagnetUpgradeCost7"></span> Electrons</button></td>
+                                <td id="MoreNMUpgrades1"><button id="MagnetUpgrade8" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(7)">You will keep extra scrap factories on next prestige<br><!--Currently: <span id="NormalMagnetUpgradeEffect8"></span>x<br>-->Cost: <span id="NormalMagnetUpgradeCost8"></span> Protons</button></td>
+                            </tr>
+                        </table>
+                        <table id="NMURow3">
+                            <br id="newLine1.2">
+                            <tr>
+                                <td id="MoreNMUpgrades1"><button id="MagnetUpgrade9" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(8)">Total scrap factories boost Scrap gain<br>Currently: <span id="NormalMagnetUpgradeEffect9"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost9"></span> Magnets</button></td>
+                                <td id="MoreNMUpgrades1"><button id="MagnetUpgrade10" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(9)">Total scrap factories boost Golden Scrap gain<br>Currently: <span id="NormalMagnetUpgradeEffect10"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost10"></span> Steel Beams</button></td>
+                                <td id="MoreNMUpgrades1"><button id="MagnetUpgrade11" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(10)">Total scrap factories boost Scrap gain<br>Currently: <span id="NormalMagnetUpgradeEffect11"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost11"></span> Electrons</button></td>
+                                <td id="MoreNMUpgrades1"><button id="MagnetUpgrade12" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(11)">Total scrap factories boost Golden Scrap gain<br>Currently: <span id="NormalMagnetUpgradeEffect12"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost12"></span> Protons</button></td>
+                            </tr>
+                        </table>
+                        <table id="NMURow4">
+                            <br id="newLine2.2">
+                            <tr>
+                                <td id="MoreNMUpgrades2"><button id="MagnetUpgrade13" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(12)">Gained Magnets and Steel Beams multiply brick self-boost strength<br>Currently: <span id="NormalMagnetUpgradeEffect13"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost13"></span> Magnets</button></td>
+                                <td id="MoreNMUpgrades2"><button id="MagnetUpgrade14" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(13)">Total Super Factories boost 16th GS Upgrade effect<br>Currently: <span id="NormalMagnetUpgradeEffect14"></span>x<br>Cost: <span id="NormalMagnetUpgradeCost14"></span> Steel Beams</button></td>
+                                <td id="MoreNMUpgrades2"><button id="MagnetUpgrade15" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(14)">Gained Magnets and Steel beams power up Golden Scrap effect<br>Currently: ^<span id="NormalMagnetUpgradeEffect15"></span><br>Cost: <span id="NormalMagnetUpgradeCost15"></span> Electrons</button></td>
+                                <td id="MoreNMUpgrades2"><button id="MagnetUpgrade16" class="magnetUpgrade magnetUpgradeIsNotBought" onclick="buyMagnetUpgrade(15)" style="font-size: 10px;">Electons and Protons boost each other in gain and effect<br><br><span id="NormalMagnetUpgradeEffect16"></span><br>Cost: <span id="NormalMagnetUpgradeCost16"></span> Protons</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </center>
+            </div>
+
+            <div id="subProduction3">
+                <div id="bricksLockedText" style="position: relative; top: 100px;"><span style="font-size: 30px;">LOCKED</span><br>This feature will be unlocked when you have 18th Golden Scrap Upgrade<br>Come back if you have it ;)</div>
+
+                <div id="bricksScreen">
+                    You have <span id="BrickAmount" class="brickText" style="font-size: 32px;">0</span> Bricks (+<span id="BricksPerSecond" class="brickText" style="font-size: 25px;"></span>/s)<br><br>
+                    Brick Self-Boost: <span id="BrickSelfBoost"></span>x<br>
+                    Your Brick Self-Boost is at <span id="BrickSelfBoostStrength"></span>% strength
+
+                    <br><br>
+
+                    <table class="brickTable" style="width: 100%; text-align: center;">
+                        <tr>
+                            <td><center><div>You have <span id="WrenchAmount" style="font-size: 25px;"></span> wrenches<br><span id="WrenchEffect"></span></div><br><button class="normalButton" onclick="brickSacrifice()">Sacrifice all your bricks<br>for <span id="PendingWrenches"></span> wrenches</button></center></td>
+                        </tr>
+                    </table>
+                    <div style="font-size: 25px;"><strong>Repeatable Brick Upgrades (RBU)</strong></div>
+                    <br>
+                    <table><tr>
+                        <td><button class="brickButton" onclick="maxAllRBUs()">Max All RBUs</button></td>
+                        <td><div id="RBUAutobuyer"><button class="brickButton" onclick="switchLever('RBU Autobuyer')">RBU Autobuyer: <span id="RBUAutobuyerStatus"></span></button></div></td>
+                    </tr></table>
+                    <br>
+                    
+                    <table>
+                        <tr>
+                            <td><button id="RepeatableBrickUpgrade1" class="repeatableBrickUpgrade repeatableBrickUpgradeIsAffordable" onclick="buyRepeatableBrickUpgrades('singles', 0)">You gain <span id="RepeatableBrickUpgradeEffect1.2"></span>x more wrenches<br>Cost: <span id="RepeatableBrickUpgradeCost1"></span> Bricks<br>Level: <span id="RepeatableBrickUpgradeLevel1"></span><br>Currently: <span id="RepeatableBrickUpgradeEffect1.1"></span>x</button></td>
+                            <td><button id="RepeatableBrickUpgrade2" class="repeatableBrickUpgrade repeatableBrickUpgradeIsAffordable" onclick="buyRepeatableBrickUpgrades('singles', 1)">Stronger wrench effect to brick self-boost<br>Cost: <span id="RepeatableBrickUpgradeCost2"></span> Bricks<br>Level: <span id="RepeatableBrickUpgradeLevel2"></span><br>Currently: ^<span id="RepeatableBrickUpgradeEffect2"></span></button></td>
+                            <td><button id="RepeatableBrickUpgrade3" class="repeatableBrickUpgrade repeatableBrickUpgradeIsAffordable" onclick="buyRepeatableBrickUpgrades('singles', 2)">Electron and proton effects use better formula<br>Cost: <span id="RepeatableBrickUpgradeCost3"></span> Bricks<br>Level: <span id="RepeatableBrickUpgradeLevel3"></span><br>Currently: ^<span id="RepeatableBrickUpgradeEffect3"></span></button></td>
+                            <td><button id="RepeatableBrickUpgrade4" class="repeatableBrickUpgrade repeatableBrickUpgradeIsAffordable" onclick="buyRepeatableBrickUpgrades('singles', 3)">Gain electrons and protons on sacrifice every second<br>Cost: <span id="RepeatableBrickUpgradeCost4"></span> Bricks<br>Level: <span id="RepeatableBrickUpgradeLevel4"></span><br>Currently: +<span id="RepeatableBrickUpgradeEffect4"></span>%/s</button></td>
+                        </tr>
+                    </table><br>
+                    <div style="font-size: 25px;"><strong>Normal Brick Upgrades (NBU)</strong></div>
+                    <div id="NBUAutobuyer"><br><button class="brickButton" onclick="switchLever('NBU Autobuyer')">NBU Autobuyer: <span id="NBUAutobuyerStatus"></span></button><br><br></div>
+                    <table id="NBURow1">
+                        <tr>
+                            <td><button id="BrickUpgrade1" class="brickUpgrade brickUpgradeIsAffordable" onclick="buyBrickUpgrade(0)">Gained bricks boost scrap gain and Scraps boost brick gain<br><!-- Currently: <span id="NormalBrickUpgradeEffect1"></span> --><br>Cost: <span id="NormalBrickUpgradeCost1"></span> Bricks</button></td>
+                            <td><button id="BrickUpgrade2" class="brickUpgrade brickUpgradeIsAffordable" onclick="buyBrickUpgrade(1)">Wrenches make all RBU costs cheaper<br>Currently: /<span id="NormalBrickUpgradeEffect2"></span><br>Cost: <span id="NormalBrickUpgradeCost2"></span> Bricks</button></td>
+                            <td><button id="BrickUpgrade3" class="brickUpgrade brickUpgradeIsAffordable" onclick="buyBrickUpgrade(2)">Prestiges make 2nd RBU cost cheaper<br>Currently: /<span id="NormalBrickUpgradeEffect3"></span><br>Cost: <span id="NormalBrickUpgradeCost3"></span> Bricks</button></td>
+                            <td><button id="BrickUpgrade4" class="brickUpgrade brickUpgradeIsAffordable" onclick="buyBrickUpgrade(3)">Super Factories generate 3rd and 4th RMU extra levels<br>Currently: +<span id="NormalBrickUpgradeEffect4"></span>/s<br>Cost: <span id="NormalBrickUpgradeCost4"></span> Bricks</button></td>
+                        </tr>
+                    </table>
+                    <table id="NBURow2">
+                        <tr>
+                            <td><button id="BrickUpgrade5" class="brickUpgrade brickUpgradeIsAffordable" onclick="buyBrickUpgrade(4)">Bricks boost Golden Scrap gain<br>Currently: <span id="NormalBrickUpgradeEffect5"></span>x<br>Cost: <span id="NormalBrickUpgradeCost5"></span> Bricks</button></td>
+                            <td><button id="BrickUpgrade6" class="brickUpgrade brickUpgradeIsAffordable" onclick="buyBrickUpgrade(5)">Golden scrap effect uses better formula<br><span id="NormalBrickUpgradeEffect6"></span><br>Cost: <span id="NormalBrickUpgradeCost6"></span> Bricks</button></td>
+                            <td><button id="BrickUpgrade7" class="brickUpgrade brickUpgradeIsAffordable" onclick="buyBrickUpgrade(6)">Total Super factories boost extra scrap factory gain<br>Currently: <span id="NormalBrickUpgradeEffect7"></span>x<br>Cost: <span id="NormalBrickUpgradeCost7"></span> Bricks</button></td>
+                            <td><button id="BrickUpgrade8" class="brickUpgrade brickUpgradeIsAffordable" onclick="buyBrickUpgrade(7)">Total Scrap factories boost Golden Scrap gain<br>Currently: <span id="NormalBrickUpgradeEffect8"></span>x<br>Cost: <span id="NormalBrickUpgradeCost8"></span> Bricks</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id="subProduction4">
+
+                <div id="factoryListLockedText" style="position: relative; top: 100px;"><span style="font-size: 30px;">LOCKED</span><br>This feature will be unlocked when you have 12th Golden Scrap Upgrade<br>Come back if you have it ;)</div>
+
+                <div id="factoryListScreen">
+                    Hover over every factory name to see the cost scaling weakness info
+                    <br><br>
+                    <table style="width: 100%; text-align: center;">
+                        <tr>
+                            <th style="width: 25%; max-width: 25%;">Name</th>
+                            <th style="width: 25%; max-width: 25%;">Amount</th>
+                            <th style="width: 25%; max-width: 25%;">Cost</th>
+                            <th style="width: 25%; max-width: 25%;">Buy Max</th>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 25%; max-width: 25%;" class="tooltip">Scrap Factories (#1)<span class="tooltiptext">Scaling Weakness (SW):<br><span id="FactoryScalingWeakness1"></span>%</span></td>
+                            <td id="FactoryAmount1" style="width: 25%; max-width: 25%;">0.0</td>
+                            <td style="width: 25%; max-width: 25%;"><button onclick="buyFactory('singles', 0)" class="buyFactoryButton productionButton" style="width: 100%;"><span id="FactoryCost1"></span> Scraps</button></td>
+                            <td style="width: 25%; max-width: 25%;"><button onclick="buyFactory('max', 0)" class="buyFactoryButton productionButton" style="width: 100%;">Buy max</button></td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 25%; max-width:25%;" class="tooltip">Super Factories (#2)<span class="tooltiptext">Scaling Weakness (SW):<br><span id="FactoryScalingWeakness2"></span>%</span></td>
+                            <td id="FactoryAmount2" style="width: 25%; max-width: 25%;">0.0</td>
+                            <td style="width: 25%; max-width: 25%;"><button onclick="buyFactory('singles', 1)" class="buyFactoryButton prestigeButton" style="width: 100%;"><span id="FactoryCost2"></span> Golden Scraps</button></td>
+                            <td style="width: 25%; max-width: 25%;"><button onclick="buyFactory('max', 1)" class="buyFactoryButton prestigeButton" style="width: 100%;">Buy max</button></td>
+                        </tr>
+
+                        <tr id="FactoryRow3">
+                            <td style="width: 25%; max-width:25%;" class="tooltip">Boosted Factories (#3)<span class="tooltiptext">Scaling Weakness (SW):<br><span id="FactoryScalingWeakness3"></span>%</span></td>
+                            <td id="FactoryAmount3" style="width: 25%; max-width: 25%;">0.0</td>
+                            <td style="width: 25%; max-width: 25%;"><button onclick="buyFactory('singles', 2)" class="buyFactoryButton boostersButton" style="width: 100%;"><span id="FactoryCost3"></span> Fuel</button></td>
+                            <td style="width: 25%; max-width: 25%;"><button onclick="buyFactory('max', 2)" class="buyFactoryButton boostersButton" style="width: 100%;">Buy max</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="prestige">
+            <div>You have <span id="GoldenScrapDisplay" class="biggerGold1"></span> Golden Scraps<br>They are multiplying your scrap gain by <span id="GoldenScrapDisplay2" class="biggerGold2"></span></div>
+            <div id="GSSlowdown" class="warning"></div><br><br>
+            <div>You have prestiged <span id="PrestigeStats"></span> times || Prestige time: <span id="PrestigeTime"></span> seconds</div>
+            <div class="tooltip"><button class="prestigeButton" onclick="prestigeButtonDoes()">Prestige for<br><span id="PendingGoldenScrapDisplay"></span> golden scraps.<span class="tooltiptext">Can't prestige until 200 golden scraps</span></button></div><br><br>
+            <button class="prestigeButton" onclick="subTab1('subPrestige2')">Upgrades</button>
+            <button class="prestigeButton" onclick="subTab1('subPrestige3')">Stars</button>
+            <button class="prestigeButton" onclick="subTab1('subPrestige4')">Automation</button>
+            <button class="normalButton" id="decaySubTab" onclick="subTab1('subPrestige5')">Decayverse</button>
+            <br>
+            <br>
+
+            <div id="subPrestige2">
+                <div id="PossibleBoughtGSULeftText">You have <span id="PossibleBoughtGSULeft"></span> possible bought Golden Scrap Upgrades</div>
+                <div id="GSUAutobuyer">
+                    <button class="prestigeButton" onclick="switchLever('GSU Autobuyer')">GS Upgrade Autobuyer: <span id="GSUAutobuyerStatus"></span></button><div id="PossibleGSULeft"></div><br>
+                </div>
+                <center>
+                    <table id="GSURow1">
+                        <tr>
+                            <td><button id="GSUpgrade1" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(0)">Total scrap factories boost Scrap gain<br> Currently: <span id="GoldenScrapUpgradeEffect1"></span><br>Cost: <span id="GoldenScrapUpgradeCost1"></span> GS</button></td>
+                            <td><button id="GSUpgrade2" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(1)">Total scrap factories boost Scrap and Golden Scrap gain<br>Currently: <span id="GoldenScrapUpgradeEffect2.1"></span> GS and <span id="GoldenScrapUpgradeEffect2.2"></span> Scraps<br>Cost: <span id="GoldenScrapUpgradeCost2"></span> GS</button></td>
+                            <td><button id="GSUpgrade3" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(2)">Prestige time boosts scrap gain<br>Currently: <span id="GoldenScrapUpgradeEffect3"></span><br>Cost: <span id="GoldenScrapUpgradeCost3"></span> GS</button></td>
+                            <td><button id="GSUpgrade4" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(3)">Scraps boost its gain<br><br>Currently: <span id="GoldenScrapUpgradeEffect4"></span><br>Cost: <span id="GoldenScrapUpgradeCost4"></span> GS</button></td>
+                        </tr>
+                    </table>
+                    <table id="GSURow2">
+                        <tr>
+                            <td><button id="GSUpgrade5" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(4)">Total factories boost Golden Scrap gain<br>Currently: <span id="GoldenScrapUpgradeEffect5"></span><br>Cost: <span id="GoldenScrapUpgradeCost5"></span> GS</button></td>
+                            <td><button id="GSUpgrade6" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(5)">Unlock Magnets<br><br>Cost: <span id="GoldenScrapUpgradeCost6"></span> GS</button></td>
+                            <td id="MoreGSUpgrades1"><button id="GSUpgrade7" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(6)">Magnets and Steel Beams boost each other<br><br>Cost: <span id="GoldenScrapUpgradeCost7"></span> GS</button></td>
+                            <td id="MoreGSUpgrades1"><button id="GSUpgrade8" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(7)">Gained Magnets and Steel Beams boost scraps<br>Currently: <span id="GoldenScrapUpgradeEffect8"></span><br>Cost: <span id="GoldenScrapUpgradeCost8"></span> GS</button></td>
+                        </tr>
+                    </table>
+                    <table id="GSURow3">
+                        <tr>
+                            <td id="MoreGSUpgrades1"><button id="GSUpgrade9" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(8)">Electrons and Protons boost each other<br><br>Cost: <span id="GoldenScrapUpgradeCost9"></span> GS</button></td>
+                            <td id="MoreGSUpgrades1"><button id="GSUpgrade10" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(9)">Total scrap factories boost Scrap gain<br>Currently: <span id="GoldenScrapUpgradeEffect10"></span><br>Cost: <span id="GoldenScrapUpgradeCost10"></span> GS</button></td>
+                            <td id="MoreGSUpgrades1"><button id="GSUpgrade11" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(10)">Generate prestiges based on golden scraps<br>Currently: <span id="GoldenScrapUpgradeEffect11"></span><br>Cost: <span id="GoldenScrapUpgradeCost11"></span> GS</button></td>
+                            <td id="MoreGSUpgrades1"><button id="GSUpgrade12" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(11)">Unlock super factories and prestiging now subtracts <span id="GoldenScrapUpgradeEffect12">60</span> seconds of prestige time (Instead of resetting to 0 secs)<br><br>Cost: <span id="GoldenScrapUpgradeCost12"></span> GS</button></td>
+                        </tr>
+                    </table>
+                    <table id="GSURow4">
+                        <br id="newLine1.1">
+                        <tr>
+                            <td id="MoreGSUpgrades2"><button id="GSUpgrade13" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(12)">Total Super factories boost extra scrap factory gain<br>Currently: <span id="GoldenScrapUpgradeEffect13"></span><br>Cost: <span id="GoldenScrapUpgradeCost13"></span> GS</button></td>
+                            <td id="MoreGSUpgrades2"><button id="GSUpgrade14" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(13)">Total Super factories boost extra scrap factory gain<br>Currently: <span id="GoldenScrapUpgradeEffect14"></span><br>Cost: <span id="GoldenScrapUpgradeCost14"></span> GS</button></td>
+                            <td id="MoreGSUpgrades2"><button id="GSUpgrade15" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(14)">Total Super factories boost Golden Scrap gain<br>Currently: <span id="GoldenScrapUpgradeEffect15"></span><br>Cost: <span id="GoldenScrapUpgradeCost15"></span> GS</button></td>
+                            <td id="MoreGSUpgrades2"><button id="GSUpgrade16" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(15)">Total Super factories generate extra levels of 2nd RMU<br>Currently: <span id="GoldenScrapUpgradeEffect16"></span><br>Cost: <span id="GoldenScrapUpgradeCost16"></span> GS</button></td>
+                        </tr>
+                    </table>
+                    <table id="GSURow5">
+                        <br id="newLine2.1">
+                        <tr>
+                            <td id="MoreGSUpgrades2"><button id="GSUpgrade17" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(16)">4th and 8th Golden Scrap Upgrade effect use better formula<br><span id="GoldenScrapUpgradeEffect17"></span><br>Cost: <span id="GoldenScrapUpgradeCost17"></span> GS</button></td>
+                            <td id="MoreGSUpgrades2"><button id="GSUpgrade18" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(17)">Unlock Bricks<br><br><!--Currently: <span id="GoldenScrapUpgradeEffect18"></span><br>-->Cost: <span id="GoldenScrapUpgradeCost18"></span> GS</button></td>
+                            <td id="MoreGSUpgrades3"><button id="GSUpgrade19" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(18)">Star effect multiplier is added by <span id="GoldenScrapUpgradeEffect19"></span><br><!--Currently: <br>-->Cost: <span id="GoldenScrapUpgradeCost19"></span> GS</button></td>
+                            <td id="MoreGSUpgrades3"><button id="GSUpgrade20" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(19)">Bricks boost 11th GS Upgrade effect<br>Currently: <span id="GoldenScrapUpgradeEffect20"></span><br>Cost: <span id="GoldenScrapUpgradeCost20"></span> GS</button></td>
+                        </tr>
+                    </table>
+                    <table id="GSURow6">
+                        <br id="newLine3.1">
+                        <tr>
+                            <td id="MoreGSUpgrades3"><button id="GSUpgrade21" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(20)">Multiply brick self-boost strength by <span id="GoldenScrapUpgradeEffect21"></span><br>Cost: <span id="GoldenScrapUpgradeCost21"></span> GS</button></td>
+                            <td id="MoreGSUpgrades3"><button id="GSUpgrade22" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(21)" style="font-size: 11px;">1st RBU effect gets better based on its level (Starts at 100 levels)<br>Currently: <span id="GoldenScrapUpgradeEffect22"></span><br><br>Cost: <span id="GoldenScrapUpgradeCost22"></span> GS</button></td>
+                            <td id="MoreGSUpgrades3"><button id="GSUpgrade23" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(22)">20th GS Upgrade uses better formula<br><span id="GoldenScrapUpgradeEffect23"></span><br><br>Cost: <span id="GoldenScrapUpgradeCost23"></span> GS</button></td>
+                            <td id="MoreGSUpgrades3"><button id="GSUpgrade24" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(23)">Unlock Decayverse<br><!--Currently: <span id="GoldenScrapUpgradeEffect24"></span><br>--><br>Cost: <span id="GoldenScrapUpgradeCost24"></span> GS</button></td>
+                        </tr>
+                    </table>
+                    <table id="GSURow7">
+                        <br id="newLine4.1">
+                        <tr>
+                            <td id="MoreGSUpgrades4"><button id="GSUpgrade25" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(24)">RP and gained wrenches boost each other<br><!--Currently: <span id="GoldenScrapUpgradeEffect25"></span><br>--><br>Cost: <span id="GoldenScrapUpgradeCost25"></span> GS</button></td>
+                            <td id="MoreGSUpgrades4"><button id="GSUpgrade26" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(25)" style="font-size: 11px;">Regenerators provide more RP base gain and regenerator gain is boosted by its amount<br><br><span id="GoldenScrapUpgradeEffect26"></span><br><br>Cost: <span id="GoldenScrapUpgradeCost26"></span> GS</button></td>
+                            <td id="MoreGSUpgrades4"><button id="GSUpgrade27" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(26)">Golden Scraps make wrench effect to brick self boost strength stronger<br>Currently: <span id="GoldenScrapUpgradeEffect27"></span><br>Cost: <span id="GoldenScrapUpgradeCost27"></span> GS</button></td>
+                            <td id="MoreGSUpgrades4"><button id="GSUpgrade28" class="buttonUpgrade upgradeIsNotBought" onclick="buyGoldenScrapUpgrade(27)">Unlock Boosters (Prestige layer)<br><!--<span id="GoldenScrapUpgradeEffect28"></span>--><br>Cost: <span id="GoldenScrapUpgradeCost28"></span> GS</button></td>
+                        </tr>
+                    </table>
+                    
+                </center>
+
+            </div>
+
+            <div id="subPrestige3">
+                <div>You have <span class="biggerGold1" id="StarsDisplay"></span> Stars.<br>Multiplying your scrap gain by <span class="biggerGold2" id="StarEffect"></span>.</div>
+                <button class="prestigeButton" onclick="buyStars('singles')">Buy a star<br>Cost: <span id="BuyStarsDisplay"></span> Golden Scraps.</button><br><br><button class="prestigeButton" onclick="buyStars('max')">Buy Max Stars</button>
+            </div>
+
+
+            <div id="subPrestige4">
+                <div class="automator-container">
+                    Autoclicker Lvl. <span id="AutomatorLevel1">99999</span><br>
+                    Autoclicks scrap gain button<br>
+                    Speed: <span id="AutomatorSpeed1">1.00</span>/s<br>
+                    <button class="prestigeButton" onclick="upgradeAutomator('singles', 0)">Upgrade Autoclicker<br><span id="AutomatorCostText1">Cost: <span id="AutomatorCost1">1 quadrillion</span> GS </span><span id="AutomatorMaxedOut"></span></button><br>
+                    Is Active: <input id="AutomatorActivation1" type="checkbox" class="checkbox" onclick="player.automator[0].isActive = document.getElementById('AutomatorActivation1').checked">
+                </div>
+                <div class="automator-container">
+                    Auto-Multiplicator Lvl. <span id="AutomatorLevel2"></span> / 10<br>
+                    Buy maxes multiplicators automatically<br>
+                    Speed: <span id="AutomatorSpeed2">1.00</span>/s<br>
+                    <button class="prestigeButton" onclick="upgradeAutomator('singles', 1)">Upgrade Auto-Multiplicator<br><span id="AutomatorCostText2">Cost: <span id="AutomatorCost2">1 quadrillion</span> GS </span><span id="AutomatorMaxedOut"></span></button><br>
+                    Is Active: <input id="AutomatorActivation2" type="checkbox" class="checkbox" onclick="player.automator[1].isActive = document.getElementById('AutomatorActivation2').checked">
+                </div>
+            </div>
+
+            <div id="subPrestige5">
+                <div id="decayLockedText" style="position: relative; top: 100px;"><span style="font-size: 30px;">LOCKED</span><br>This feature will be unlocked when you have 24th Golden Scrap Upgrade<br>Come back if you have it ;)</div>
+
+                <div id="decayScreen">
+                    You have <span id="RegeneratorAmount"></span> regenerators, which have provided you a base RP gain of +<span id="RegeneratorEffect"></span>/s<br>
+                    and are multiplying your decay resistance by <span id="RegeneratorEffect2"></span><br><br>
+                    Next regenerator at <span id="NextRegenerator" class="bigger2"></span> scraps in decayverse<br><br>
+                    Decay Resistance: <span id="DecayResistance"></span>%<br><br>
+                    <button id="EnterDecayverseButton" class="normalButton" onclick="enterExitDecayverse()"></button><br><br><br>
+                    You have <span id="RegenPoints"></span> Regeneration Points (+<span id="RPPerSecond"></span>/s), multiplying your golden scrap gain by <span id="RPEffect1"></span><br>
+                    and multiplying your scrap gain by <span id="RPEffect2"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="boosters">
+            <div id="boostersLockedText" style="position: relative; top: 100px;"><span style="font-size: 30px;">LOCKED</span><br>This feature will be unlocked when you have 28th Golden Scrap Upgrade<br>Come back if you have it ;)</div><br>
+
+
+            <div id="boostersScreen">
+                You have <span id="BoosterAmount" class="boosterText" style="font-size: 32px;"></span> Boosters<br>
+                <div id="BoosterSlowdown" class="warning"></div><br>
+                You have performed <span id="PerformedCompressions"></span> Compressions<br>
+                <button class="boostersButton" onclick="compressionButtonDoes()">Do a compression<br>for <span id="PendingBoosters"></span> Boosters</button><br><br>
+                <button id="boosterChallengeButton" class="boostersButton" onclick="subTab5('subBoosters5')">Booster Challenges</button>
+                <button class="boostersButton" onclick="subTab5('subBoosters1')">Saving Milestones</button>
+                <button class="boostersButton" onclick="subTab5('subBoosters2')">Booster Transformation</button>
+                <button class="boostersButton" onclick="subTab5('subBoosters3')">Thermal Energy</button>
+                <button class="boostersButton" onclick="subTab5('subBoosters4')">Fuel</button>
+                <br>
+                <br>
+                <br>
+
+                <div id="subBoosters1">
+                    Your best boosters was <span id="BestBoosters"></span>
+                    <table class="savingMilestoneTable" style="border-spacing: 5px;">
+                        <tr>
+                            <td style="padding: 4px;" id="SavingMilestone1" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired1"></span> Booster<br><br>"Factory lists" is always unlocked</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone2" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired2"></span> Boosters<br><br>You keep 5 Extra Levels of 3rd RMU</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone3" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired3"></span> Boosters<br><br>Thermal Energy make you to gain wrenches on sacrifice every second<br><br><br>Currently: +<span id="SavingMilestoneEffect3"></span>%/s</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone4" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired4"></span> Boosters<br><br>Unlock Boosted Factories (#3) and several fuel upgrades</div></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px;" id="SavingMilestone5" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired5"></span> Boosters<br><br>Automatically Buy GS Upgrades (can be turned off in GS Upgrades sub tab)</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone6" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired6"></span> Boosters<br><br>You gain Magnets and Steel Beams passively once you unlock Magnets and Automatically Buy NMUs (can be turned off in Magnets sub tab)</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone7" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired7"></span> Boosters<br><br>Automatically Buy RBU levels and NBUs (can be turned off in Bricks sub tab)</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone8" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired8"></span> Boosters<br><br>Unlock Booster Challenges</div></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 4px;" id="SavingMilestone9" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired9"></span> Boosters<br><br>Best boosters boost fuel gain<br><br>Currently: <span id="SavingMilestoneEffect9"></span>x</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone10" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired10"></span> Boosters<br><br>Unlock 2 more Booster types</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone11" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired11"></span> Boosters<br><br>Unlock 2 more Booster types and several fuel upgrade</div></td>
+                            <td style="padding: 4px;" id="SavingMilestone12" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired12"></span> Boosters<br><br>Gain 1% Boosters and fuel on compression every second. Keep prestiges and extra Super Factories on next compression</div></td>
+                        </tr>
+                    </table>
+
+                    <table class="savingMilestoneTable" style="border-spacing: 0px;">
+                        <tr>
+                            <td style="padding: 4px;" id="SavingMilestone13" class="savingMilestone milestoneLocked"><div><span id="BoostersRequired13"></span> Boosters<br><br>Unlock Empowerment (Prestige Layer)(Coming Soon)</div></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="subBoosters2">
+                    <div>
+                        <button class="boostersButton" onclick="transformationTab('Transformation1')">Inflators</button>
+                        <button class="boostersButton" onclick="transformationTab('Transformation2')">Discounters</button>
+                        <button id="antiScalersButton" class="boostersButton" onclick="transformationTab('Transformation3')">Anti-Scalers</button>
+                        <button id="antiScalers2Button" class="boostersButton" onclick="transformationTab('Transformation4')">Anti-Scalers II</button>
+                        <button id="synergizersButton" class="boostersButton" onclick="transformationTab('Transformation5')">Synergizers</button>
+                        <button id="synergizers2Button" class="boostersButton" onclick="transformationTab('Transformation6')">Synergizers II</button>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div id="Transformation1">
+                            <button class="boostersButton" onclick="transformBoosters(0, 'singles')">Transform 1 Booster<br>into Inflator</button> <button class="boostersButton" onclick="transformBoosters(0, 'half')">Transform 50% of your Boosters<br>into Inflators</button><br><br><br>
+                            You have <span id="TransformedBoosters1" class="boosterText" style="font-size: 25px"></span> Inflators.
+                            <br><br><br>
+                            You have <span id="BoosterPointType1" class="boosterText" style="font-size: 25px">0</span> Inflation Points (+<span id="BoosterPointTypePerSecond1" class="boosterText" style="font-size: 25px"></span>/s)<br><br>
+                            They are multiplying all pre-boosters resources by <span id="BoosterPointTypeEffect1" class="boosterText" style="font-size: 25px"></span>
+                        </div>
+
+                        <div id="Transformation2">
+                            <button class="boostersButton" onclick="transformBoosters(1, 'singles')">Transform 1 Booster<br>into Discounter</button> <button class="boostersButton" onclick="transformBoosters(1, 'half')">Transform 50% of your Boosters<br>into Discounters</button><br><br><br>
+                            You have <span id="TransformedBoosters2" class="boosterText" style="font-size: 25px"></span> Discounters.
+                            <br><br><br>
+                            You have <span id="BoosterPointType2" class="boosterText" style="font-size: 25px">0</span> Discount Points (+<span id="BoosterPointTypePerSecond2" class="boosterText" style="font-size: 25px"></span>/s)<br><br>
+                            They are dividing all pre-boosters costs (including Scrap Factory and Super Factory cost) by <span id="BoosterPointTypeEffect2" class="boosterText" style="font-size: 25px"></span>
+                        </div>
+
+                        <div id="Transformation3">
+                            <button class="boostersButton" onclick="transformBoosters(2, 'singles')">Transform 1 Booster<br>into Anti-Scaler</button> <button class="boostersButton" onclick="transformBoosters(2, 'half')">Transform 50% of your Boosters<br>into Anti-Scalers</button><br><br><br>
+                            You have <span id="TransformedBoosters3" class="boosterText" style="font-size: 25px"></span> Anti-Scalers.
+                            <br><br><br>
+                            You have <span id="BoosterPointType3" class="boosterText" style="font-size: 25px">0</span> Anti-Scalation Points (+<span id="BoosterPointTypePerSecond3" class="boosterText" style="font-size: 25px"></span>/s)<br><br>
+                            They are making your GS Slowdown start at <span id="BoosterPointTypeEffect3" class="boosterText" style="font-size: 25px"></span>x more scraps
+                        </div>
+
+                        <div id="Transformation4">
+                            <button class="boostersButton" onclick="transformBoosters(3, 'singles')">Transform 1 Booster<br>into Anti-Scaler II</button> <button class="boostersButton" onclick="transformBoosters(3, 'half')">Transform 50% of your Boosters<br>into Anti-Scalers II</button><br><br><br>
+                            You have <span id="TransformedBoosters4" class="boosterText" style="font-size: 25px"></span> Anti-Scalers II.
+                            <br><br><br>
+                            You have <span id="BoosterPointType4" class="boosterText" style="font-size: 25px">0</span> Anti-Scalation II Points (+<span id="BoosterPointTypePerSecond4" class="boosterText" style="font-size: 25px"></span>/s)<br><br>
+                            They are making your multiplicators start to broken at <span id="BoosterPointTypeEffect4" class="boosterText" style="font-size: 25px"></span> extra multiplicators
+                        </div>
+
+                        <div id="Transformation5">
+                            <button class="boostersButton" onclick="transformBoosters(4, 'singles')">Transform 1 Booster<br>into Synergizer</button> <button class="boostersButton" onclick="transformBoosters(4, 'half')">Transform 50% of your Boosters<br>into Synergizers</button><br><br><br>
+                            You have <span id="TransformedBoosters5" class="boosterText" style="font-size: 25px"></span> Synergizers.
+                            <br><br><br>
+                            You have <span id="BoosterPointType5" class="boosterText" style="font-size: 25px">0</span> Synergy Points (+<span id="BoosterPointTypePerSecond5" class="boosterText" style="font-size: 25px"></span>/s)<br><br>
+                            They are raising discounter point effect to the power of p<sup>2</sup> and raising star effect to the power of p<br>where p is <span id="BoosterPointTypeEffect5" class="boosterText" style="font-size: 25px"></span>
+                        </div>
+
+                        <div id="Transformation6">
+                            <button class="boostersButton" onclick="transformBoosters(5, 'singles')">Transform 1 Booster<br>into Synergizer II</button> <button class="boostersButton" onclick="transformBoosters(5, 'half')">Transform 50% of your Boosters<br>into Synergizers II</button><br><br><br>
+                            You have <span id="TransformedBoosters6" class="boosterText" style="font-size: 25px"></span> Synergizers II.
+                            <br><br><br>
+                            You have <span id="BoosterPointType6" class="boosterText" style="font-size: 25px">0</span> Synergy II Points (+<span id="BoosterPointTypePerSecond6" class="boosterText" style="font-size: 25px"></span>/s)<br><br>
+                            They are increasing your multiplicator base by <span id="BoosterPointTypeEffect6" class="boosterText" style="font-size: 25px"></span> for every 1,000,000 multiplicators
+                        </div>
+                    </div>
+                </div>
+
+                <div id="subBoosters3">
+                    You have <span id="ThermalEnergyAmount" class="boosterText" style="font-size: 25px"></span> Thermal Energy (+<span id="ThermalEnergyPerSecond" class="boosterText" style="font-size: 25px"></span>/s)<br><br>
+                    multiplying your Scrap gain by <span id="ThermalEnergyEffect1" class="boosterText" style="font-size: 25px"></span><br>
+                    and multiplying your Golden Scrap gain by <span id="ThermalEnergyEffect2" class="boosterText" style="font-size: 25px"></span>
+                    <br><br><br><br>
+                    You gain Thermal Energy based on total booster types
+                </div>
+
+                <div id="subBoosters4">
+                    You have <span id="FuelAmount" class="boosterText" style="font-size: 25px"></span> Fuel<br><br>
+                    You will gain <span id="PendingFuel" class="boosterText" style="font-size: 25px"></span> Fuel on next compression.<br><br>
+                    <button class="boostersButton" onclick="if (confirm('Are you sure you want to do that? Doing so will perform compression without giving you boosters!')) refundFuel()">Reset your fuel upgrades<br>to get <span id="FuelSpent"></span> fuel back</button><br><br>
+                    <table id="FuelUpgradeRow1">
+                        <tr>
+                            <td><button id="FuelUpgrade1" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(0)">1st RMU effect is 50% stronger<br><br>Cost: <span id="FuelCost1"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade2" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(1)">2nd RBU cost is based on (level+5)^1.75 instead of (level+5)^2.0<br><br>Cost: <span id="FuelCost2"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade3" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(2)">Best boosters power up 1st and 2nd RMU Effects<br>Currently: ^<span id="FuelUpgradeEffect3"></span><br><br>Cost: <span id="FuelCost3"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade4" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(3)">Total Super factories boost extra scrap factory gain<br>Currently: <span id="FuelUpgradeEffect4"></span>x<br><br>Cost: <span id="FuelCost4"></span> Fuel</button></td>
+                        </tr>
+                    </table>
+                    <table id="FuelUpgradeRow2">
+                        <tr>
+                            <td><button id="FuelUpgrade5" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(4)">Multiplicators boost Fuel gain<br>Currently: <span id="FuelUpgradeEffect5"></span>x<br><br>Cost: <span id="FuelCost5"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade6" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(5)">13th and 14th Golden Scrap Upgrade use better formula<br><span id="FuelUpgradeEffect6"></span><br>Cost: <span id="FuelCost6"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade7" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(6)">Total Scrap Factories boost Magnet and Steel Beam gain<br>Currently: <span id="FuelUpgradeEffect7"></span>x<br>Cost: <span id="FuelCost7"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade8" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(7)">Total Boosted Factories boost fuel gain<br>Currently: <span id="FuelUpgradeEffect8"></span>x<br>Cost: <span id="FuelCost8"></span> Fuel</button></td>
+                        </tr>
+                    </table>
+                    <table id="FuelUpgradeRow3">
+                        <tr>
+                            <td><button id="FuelUpgrade9" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(8)">Scraps boost Booster gain<br>Currently: <span id="FuelUpgradeEffect9"></span>x<br>Cost: <span id="FuelCost9"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade10" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(9)">Thermal Energy boost SW of Boosted Factory<br>Currently: <span id="FuelUpgradeEffect10"></span>x<br>Cost: <span id="FuelCost10"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade11" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(10)">Thermal Energy power up Golden Scrap effect<br>Currently: ^<span id="FuelUpgradeEffect11"></span><br>Cost: <span id="FuelCost11"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade12" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(11)">All booster point types boost Booster gain<br>Currently: <span id="FuelUpgradeEffect12"></span>x<br>Cost: <span id="FuelCost12"></span> Fuel</button></td>
+                        </tr>
+                    </table>
+                    <table id="FuelUpgradeRow4">
+                        <tr>
+                            <td><button id="FuelUpgrade13" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(12)">Total Super Factories boost Prestige Gain<br>Currently: <span id="FuelUpgradeEffect13"></span>x<br>Cost: <span id="FuelCost13"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade14" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(13)">5th and 13th Golden Scrap Upgrade use better formula<br><span id="FuelUpgradeEffect14"></span><br>Cost: <span id="FuelCost14"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade15" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(14)">Inflation point effect use better formula<br><span id="FuelUpgradeEffect15"></span><br>Cost: <span id="FuelCost15"></span> Fuel</button></td>
+                            <td><button id="FuelUpgrade16" class="boosterUpgrade boosterUpgradeIsAffordable" onclick="buyFuelUpgrades(15)">Thermal Energy effects use better formula<br><span id="FuelUpgradeEffect16"></span><br>Cost: <span id="FuelCost16"></span> Fuel</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="subBoosters5">
+                    You are currently <span id="BoosterChallengesActive"></span><br>
+                    You will perform a compression when you enter booster challenges<br>
+                    Rewards do not apply when you have below 1 completion
+                    <table>
+                        <tr>
+                            <td class="challenge-container boosterChallenge">
+                                Scrap gain is divided by its amount, you cannot gain protons and electrons and your scrap gain is divided by <span id="BCScrapDivider1"></span><br>
+                                <span id="BCEffect1"></span><br>
+                                <button class="boostersButton tooltip" onclick="enterExitBC(0)"><span id="BCEnterExitText1">Enter</span><br>this challenge<span id="BCGoalAndBestScraps1" class="tooltiptext"></span></button><br>
+                                Completed <span id="BCCompletions1"></span> times<br>Reward: Total Boosted Factories boost extra Super Factory gain by <span id="TrueBCCompletions1"></span>x
+                            </td>
+                            <td class="challenge-container boosterChallenge">
+                                Magnet, Steel Beam and Wrench gain are reduced a lot, Multiplicators start to broken instantly, but GS effect is raised to 2 and your scrap gain is divided by <span id="BCScrapDivider2"></span><br>
+                                <span id="BCEffect2"></span><br>
+                                <button class="boostersButton tooltip" onclick="enterExitBC(1)"><span id="BCEnterExitText2">Enter</span><br>this challenge<span id="BCGoalAndBestScraps2" class="tooltiptext"></span></button><br>
+                                Completed <span id="BCCompletions2"></span> times<br>Reward: Star effect is raised to <span id="TrueBCCompletions2"></span> (caps at 10)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-container boosterChallenge">
+                                GS Slowdown starts at <span id="BCEffect3.1"></span>x less scraps and your scrap gain is divided by <span id="BCScrapDivider3"></span><br>
+                                <span id="BCEffect3"></span><br>
+                                <button class="boostersButton tooltip" onclick="enterExitBC(2)"><span id="BCEnterExitText3">Enter</span><br>this challenge<span id="BCGoalAndBestScraps3" class="tooltiptext"></span></button><br>
+                                Completed <span id="BCCompletions3"></span> times<br>Reward: Prestiges boost 11th GS Upgrade effect by <span id="TrueBCCompletions3"></span>x
+                            </td>
+                            <td class="challenge-container boosterChallenge">
+                                GS effect is raised to <span id="BCEffect4.1"></span> for every second of prestige time, Multiplicators boost prestige time and your scrap gain is divided by <span id="BCScrapDivider4"></span>
+                                <span id="BCEffect4"></span><br>
+                                <button class="boostersButton tooltip" onclick="enterExitBC(3)"><span id="BCEnterExitText4">Enter</span><br>this challenge<span id="BCGoalAndBestScraps4" class="tooltiptext"></span></button><br>
+                                Completed <span id="BCCompletions4"></span> times<br>Reward: Raise your 1st RMU Effect to <span id="TrueBCCompletions4"></span> and 2nd RMU Effect to <span id="TrueBCCompletions4.1"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-container boosterChallenge" style="font-size: 12px;">
+                                Extra scrap factory, Magnet, and Steel Beam gain are multiplied by 0, scrap factory cost doesn't scale whenever you buy them, but multiplicators will limit scrap factory amount from buy maxing and your scrap gain is divided by <span id="BCScrapDivider5"></span><br>
+                                <span id="BCEffect5"></span><br>
+                                <button class="boostersButton tooltip" onclick="enterExitBC(4)"><span id="BCEnterExitText5">Enter</span><br>this challenge<span id="BCGoalAndBestScraps5" class="tooltiptext"></span></button><br>
+                                Completed <span id="BCCompletions5"></span> times<br>Reward: Total boosted factories boost Booster gain by <span id="TrueBCCompletions5"></span>x
+                            </td>
+                            <td class="challenge-container boosterChallenge">
+                                All pre-boosters resource gain are raised to <span id="BCEffect6.1"></span> and your scrap gain is divided by <span id="BCScrapDivider6"></span><br>
+                                <span id="BCEffect6"></span><br>
+                                <button class="boostersButton tooltip" onclick="enterExitBC(5)"><span id="BCEnterExitText6">Enter</span><br>this challenge<span id="BCGoalAndBestScraps6" class="tooltiptext"></span></button><br>
+                                Completed <span id="BCCompletions6"></span> times<br>Reward: +<span id="TrueBCCompletions6"></span> star multiplier base for every star
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="challenge-container boosterChallenge">
+                                You can only buy 6 Golden Scrap Upgrades (upgrades that are kept on compression and unlocking features don't count) and your scrap gain is divided by <span id="BCScrapDivider7"></span><br>
+                                <span id="BCEffect7"></span><br>
+                                <button class="boostersButton tooltip" onclick="enterExitBC(6)"><span id="BCEnterExitText7">Enter</span><br>this challenge<span id="BCGoalAndBestScraps7" class="tooltiptext"></span></button><br>
+                                Completed <span id="BCCompletions7"></span> times<br>Reward: Boost 22nd Golden Scrap Upgrade effect by <span id="TrueBCCompletions7"></span>x
+                            </td>
+                            <td class="challenge-container boosterChallenge">
+                                There is exponential super decay that divides all your pre-boosters resource amount and gain, and your scrap gain is divided by <span id="BCScrapDivider8"></span><br>
+                                <span id="BCEffect8"></span><br>
+                                <button class="boostersButton tooltip" onclick="enterExitBC(7)"><span id="BCEnterExitText8">Enter</span><br>this challenge<span id="BCGoalAndBestScraps8" class="tooltiptext"></span></button><br>
+                                Completed <span id="BCCompletions8"></span> times<br>Reward: 2nd RBU levels boost prestige gain by <span id="TrueBCCompletions8"></span>x
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="settings">
+            <button class="normalButton" onclick="subTab2('subSettings1')">Settings</button>
+            <button class="normalButton" onclick="subTab2('subSettings2')">About</button>
+            <button class="normalButton" onclick="subTab2('subSettings4')">Statistics</button>
+            <button class="normalButton" onclick="subTab2('subSettings3')">Changelog & Updates</button>
+            <button class="normalButton" onclick="subTab2('subSettings5')">Credits</button>
+            <br>
+            <br>
+
+            <div id="subSettings1">
+                <button class="normalButton" onclick="save()">Save</button>
+                <button class="normalButton" onclick="confirmHardReset()">Hard Reset</button>
+                <button class="normalButton" onclick="document.getElementById('saveText').value = exportSave()">Export</button>
+                <button class="normalButton" onclick="importSave(prompt('Insert your save.'))">Import</button><br>
+                <textarea style="resize: none; width: 30%; height: 100px;" id="saveText" placeholder="Your exported save should appear here">Your exported save should appear here</textarea><br>
+                Notation : <select id="notationSelect" style="transition-duration: 0.2s; border-width: 3px; border-color: rgba(128, 128, 128, 255);" onchange="player.options.notation = document.getElementById('notationSelect').value">
+                    <option value="scientific">Scientific</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="true-scientific">True scientific</option>
+                    <option value="true-engineering">True engineering</option>
+                    <option value="standard">Standard</option>
+                    <!--<option value="long-standard">Long standard</option>-->
+                </select><br>
+                Prestige Confirmation: <input id="PrestigeConf" type="checkbox" class="checkbox" onclick="player.options.confirmations.prestige = document.getElementById('PrestigeConf').checked"><br>
+                <div id="CompressionConfDisplay">Compression Confirmation: <input id="CompressionConf" type="checkbox" class="checkbox" onclick="player.options.confirmations.compression = document.getElementById('CompressionConf').checked"></div>
+                
+            </div>
+
+            <div id="subSettings2">
+                <div style="font-size: 25px;"><strong>Scrap Clicker++</strong></div><br>
+                An incremental game with a lot of contents!<br>
+                This game is totally different with the original game!<br>Also this game doesn't support original scrap clicker saves!<br><br>
+                
+                    <nav>
+                        <a href="https://play.google.com/store/apps/details?id=example.de.schrotttonne&hl=en" target="_blank">Original game (by Endte)</a> |
+                        <a href="https://youtu.be/RosWjxvr8-Y" target="_blank">Walkthrough Video</a> |
+                        <a href="https://www.youtube.com/channel/UC4D_JX8Z2HboHvlcKjSqOYA?view_as=subscriber" target="_blank">My YouTube Channel</a> |
+                        <a href="https://github.com/Patashu/break_eternity.js/tree/master" target="_blank">Break Eternity (by Patashu)</a> |
+                        <a href="https://www.patreon.com/Bullz04" target="_blank">Patreon</a><br><br>
+                        <a href="https://discord.gg/aggGeRc" target="_blank">Join My Discord</a>
+                    </nav>
+                
+            </div>
+
+            <div id="subSettings3">
+                <center><div style="font-size: 25px;"><strong>Changelog</strong></div></center><br>
+                Click the <span style="border: 2px solid rgb(0, 255, 0)">green-bordered box</span> to see the changelog<br><br>
+
+                <div class="changelog-container" onclick="hideAndShow('v0.3.1')">
+                    <span style="font-size: 25px;" ><strong>June 2nd, 2021 v0.3.1</strong></span><br>
+                    <span id="v0.3.1" style="display: none;"><br>
+                        <strong style="font-size: 25px;">New</strong><br>
+                        Notations now support negative numbers.<br><br>
+                        <strong style="font-size: 25px;">Changes</strong><br>
+                        Fixed bug where 2nd Golden Scrap Upgrade didn't boost golden scraps.<br>
+                        Achievement 17 reward multipliers now go up based on protons and electrons.<br>
+                        Fixed formula miscalculation on proton and electron effect display.<br>
+                        Buffed Achievement 19 reward.<br><br>
+                    </span>
+                </div>
+
+                <div class="changelog-container" onclick="hideAndShow('v0.3.0')">
+                    <span style="font-size: 25px;" ><strong>May 12th, 2021 v0.3.0</strong></span><br>
+                    <span id="v0.3.0" style="display: none;"><br>
+                        <strong style="font-size: 25px;">New</strong><br>
+                        Added Boosters.<br>
+                        Added more achievements.<br>
+                        Added more news tickers.<br>
+                        Added 2 more notations.<br><br>
+                        <strong style="font-size: 25px;">Changes</strong><br>
+                        Buffed Achievement 18 reward.<br>
+                        Slight Achievement UI style change.<br>
+                        Notation Improvement.<br>
+                        Scrap boost per achievement is increased from 1.30x to 2.00x.<br><br>
+                        <strong style="font-size: 25px;">Removed</strong><br>
+                        Removed some news tickers.
+                    </span>
+                </div>
+
+                <div class="changelog-container" onclick="hideAndShow('v0.2.0')">
+                    <span style="font-size: 25px;" ><strong>January 29th, 2021 v0.2.0</strong></span><br>
+                    <span id="v0.2.0" style="display: none;"><br>
+                        <strong style="font-size: 25px;">New</strong><br>
+                        Added Magnets, Bricks and Decayverse.<br>
+                        Added some upgrades.<br>
+                        Added credits.<br>
+                        Added notations.<br>
+                        Added achievements.<br>
+                        Added news ticker.<br><br>
+                        <strong style="font-size: 25px;">Changes</strong><br>
+                        Exported save now appears on textarea instead of appearing on entire game screen.<br>
+                        Nerfed 3rd Golden Scrap upgrade effect.<br>
+                        Nerfed 4th Golden Scrap upgrade cost.<br>
+                        Game UI style change
+                    </span>
+                </div>
+                
+                <div class="changelog-container" onclick="hideAndShow('v0.1.1')">
+                    <span style="font-size: 25px;" ><strong>October 17th, 2020 v0.1.1</strong></span><br>
+                    <span id="v0.1.1" style="display: none;"><br>
+                        <strong style="font-size: 25px;">Changes</strong><br>
+                        Buffed 3rd Golden Scrap upgrade effect<br>
+                        Buffed 4th Golden Scrap upgrade cost
+                    </span>
+                </div>
+
+                <div class="changelog-container" onclick="hideAndShow('v0.1.0')">
+                    <span style="font-size: 25px;" ><strong>September 3rd, 2020 v0.1.0</strong></span><br>
+                    <span id="v0.1.0" style="display: none;"><br>
+                        <strong style="font-size: 25px;">New</strong><br>
+                        Added GS Upgrades and stars<br><br>
+                        <strong style="font-size: 25px;">Changes</strong><br>
+                        Improved the saving system<br>
+                        Game UI style change
+                    </span>
+                </div>
+
+                <div class="changelog-container" onclick="hideAndShow('v0.0.0')">
+                    <span style="font-size: 25px;" ><strong>August 28th, 2020 v0.0.0</strong></span><br>
+                    <span id="v0.0.0" style="display: none;"><br>
+                        <strong style="font-size: 25px;">New</strong><br>
+                        Created the game
+                    </span>
+                </div>
+                <!--<div>09-03-2020 v0.1:<br>Improved the saving system, Added some GS upgrades and stars.</div><br>
+                <div>08-28-2020 v0.0:<br>Created the game.</div>-->
+            </div>
+
+            <div id="subSettings4">
+                You have done <span id="ScrapClicks"></span> manual scrap clicks.<br>
+                You have prestiged <span id="PrestigeStats"></span> times.
+            </div>
+
+            <div id="subSettings5">
+                <div style="font-size: 25px;"><strong>Credits</strong></div><br>
+                Insipiration:<br>
+                <a href="https://ivark.github.io/" target="_blank">Hevipelle's Antimatter Dimensions</a> for polynomial growth.<br>
+                <a href="https://jacorb90.github.io/DistInc.github.io/main.html" target="_blank">Jacorb's Distance Incremental</a> for softcap things.
+                <br><br>
+                Game:<br>
+                <a href="https://github.com/Patashu/break_eternity.js/tree/master" target="_blank">Break Eternity.js  by Patashu</a> for making numbers able to go past 1.797e308.<br>
+                <a href="https://reinhardt-c.github.io/TrueInfinity/" target="_blank">Reinhardt's True Infinity γ</a> for simple news ticker file.<br>
+                <a href="https://ivark.github.io/" target="_blank">Hevipelle's Antimatter Dimensions</a> for game font.
+                <br><br>
+                Helpers:<br>
+                Jacorb, DEMEMZEA.
+                
+            </div>
+            
+        </div>
+
+        <div id="achievements">
+            <button class="normalButton" onclick="subTab4('subAchievements1')">Achievements</button>
+            <button class="normalButton" onclick="subTab4('subAchievements2')">Achievement Rewards</button>
+            <div id="subAchievements1">
+                <center>
+                    <div>Your achievements multiply your scrap gain by <span id="AchievementMultiplier" class="rainbow" style="font-size: 25px;"></span>x</div><br>
+                    <div style="height: 42px; max-height: 42px; position: sticky; top: -1px; background-color: #20222e;">
+                        <div id="achievementTitle">Hover over the achievements to see details</div>
+                        <div id="achievementDescription"><br></div>
+                        <div id="achievementReward"><br></div>
+                    </div>
+                    <table class="achievementTable">
+                        <tr>
+                            <td id="Achievement1" class="achievementLocked" onmouseover="changeAchThings(0)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">1</span><!--1--></div></td>
+                            <td id="Achievement2" class="achievementLocked" onmouseover="changeAchThings(1)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">2</span><!--2--></div></td>
+                            <td id="Achievement3" class="achievementLocked" onmouseover="changeAchThings(2)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">3</span><!--3--></div></td>
+                            <td id="Achievement4" class="achievementLocked" onmouseover="changeAchThings(3)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">4</span><!--4--></div></td>
+                            <td id="Achievement5" class="achievementLocked" onmouseover="changeAchThings(4)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">5</span><!--5--></div></td>
+                            <td id="Achievement6" class="achievementLocked" onmouseover="changeAchThings(5)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">6</span><!--6--></div></td>
+                            <td id="Achievement7" class="achievementLocked" onmouseover="changeAchThings(6)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">7</span><!--7--></div></td>
+                        </tr>
+                        <tr>
+                            <td id="Achievement8" class="achievementLocked" onmouseover="changeAchThings(7)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">8</span><!--8--></div></td>
+                            <td id="Achievement9" class="achievementLocked" onmouseover="changeAchThings(8)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">9</span><!--9--></div></td>
+                            <td id="Achievement10" class="achievementLocked" onmouseover="changeAchThings(9)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">10</span><!--10--></div></td>
+                            <td id="Achievement11" class="achievementLocked" onmouseover="changeAchThings(10)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">11</span><!--11--></div></td>
+                            <td id="Achievement18" class="achievementLocked" onmouseover="changeAchThings(17)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">12</span><!--18--></div></td>
+                            <td id="Achievement12" class="achievementLocked" onmouseover="changeAchThings(11)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">13</span><!--12--></div></td>
+                            <td id="Achievement13" class="achievementLocked" onmouseover="changeAchThings(12)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">14</span><!--13--></div></td>
+                            
+
+                        </tr>
+                        <tr>
+                            <td id="Achievement14" class="achievementLocked" onmouseover="changeAchThings(13)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">15</span><!--14--></div></td>
+                            <td id="Achievement15" class="achievementLocked" onmouseover="changeAchThings(14)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">16</span><!--15--></div></td>
+                            <td id="Achievement19" class="achievementLocked" onmouseover="changeAchThings(18)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">17</span><!--19--></div></td>
+                            <td id="Achievement16" class="achievementLocked" onmouseover="changeAchThings(15)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">18</span><!--16--></div></td>
+                            <td id="Achievement17" class="achievementLocked" onmouseover="changeAchThings(16)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">19</span><!--17--></div></td>
+                            <td id="Achievement20" class="achievementLocked" onmouseover="changeAchThings(19)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">20</span><!--20--></div></td>
+                            <td id="Achievement21" class="achievementLocked" onmouseover="changeAchThings(20)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">21</span><!--21--></div></td>
+                        </tr>
+                        <tr>
+                            <td id="Achievement22" class="achievementLocked" onmouseover="changeAchThings(21)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">22</span><!--22--></div></td>
+                            <td id="Achievement23" class="achievementLocked" onmouseover="changeAchThings(22)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">23</span><!--23--></div></td>
+                            <td id="Achievement24" class="achievementLocked" onmouseover="changeAchThings(23)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">24</span><!--24--></div></td>
+                            <td id="Achievement25" class="achievementLocked" onmouseover="changeAchThings(24)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">25</span><!--25--></div></td>
+                            <td id="Achievement26" class="achievementLocked" onmouseover="changeAchThings(25)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">26</span><!--26--></div></td>
+                            <td id="Achievement27" class="achievementLocked" onmouseover="changeAchThings(26)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">27</span><!--27--></div></td>
+                            <td id="Achievement28" class="achievementLocked" onmouseover="changeAchThings(27)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">28</span><!--28--></div></td>
+                        </tr>
+                        <tr>
+                            <td id="Achievement29" class="achievementLocked" onmouseover="changeAchThings(28)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">29</span><!--29--></div></td>
+                            <td id="Achievement30" class="achievementLocked" onmouseover="changeAchThings(29)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">30</span><!--30--></div></td>
+                            <td id="Achievement31" class="achievementLocked" onmouseover="changeAchThings(30)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">31</span><!--31--></div></td>
+                            <td id="Achievement32" class="achievementLocked" onmouseover="changeAchThings(31)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">32</span><!--32--></div></td>
+                            <td id="Achievement33" class="achievementLocked" onmouseover="changeAchThings(32)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">33</span><!--33--></div></td>
+                            <td id="Achievement34" class="achievementLocked" onmouseover="changeAchThings(33)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">34</span><!--34--></div></td>
+                            <td id="Achievement35" class="achievementLocked" onmouseover="changeAchThings(34)" onmouseout="normalizeAchThings()"><div>Achievement<br><br><span style="font-size: 20px;">35</span><!--35--></div></td>
+                        </tr>
+                    </table> 
+                </center>
+            </div>
+            <div id="subAchievements2">
+                <div style="font-size: 25px;"><strong>Achievement Rewards</strong></div>
+                <br>
+                
+                <div class="achievementReward-container" id="AchRewardDisplay1">
+                    Achievement 17 reward:<br><br>
+                    Electrons and Protons boost each other in gain<br><br>
+                    <span id="AchRewardEffect1"></span>
+                </div>
+                <div class="achievementReward-container" id="AchRewardDisplay2">
+                    Achievement 18 reward:<br><br>
+                    Manual scrap clicks boost scrap gain<br>
+                    (boost starts at 5,000 scrap clicks)<br><br>
+                    Currently: <span id="AchRewardEffect2"></span>
+                </div>
+                <div class="achievementReward-container" id="AchRewardDisplay3">
+                    Achievement 19 reward:<br><br>
+                    Boost your Golden Scrap Gain by <span id="AchRewardEffect3"></span>
+                </div>
+                <div class="achievementReward-container" id="AchRewardDisplay4">
+                    Achievement 29 reward:<br><br>
+                    Thermal Energy boost its gain<br><br>
+                    Currently: <span id="AchRewardEffect4"></span>x
+                </div>
+                <div class="achievementReward-container" id="AchRewardDisplay5">
+                    Achievement 31 reward:<br><br>
+                    All Automation speed is boosted by Golden Scraps<br><br>
+                    Currently: <span id="AchRewardEffect5"></span>x
+                </div>
+                <div class="achievementReward-container" id="AchRewardDisplay6">
+                    Achievement 32 reward:<br><br>
+                    Thermal Energy boost its gain<br><br>
+                    Currently: <span id="AchRewardEffect6"></span>x
+                </div>
+                <div class="achievementReward-container" id="AchRewardDisplay7">
+                    Achievement 33 reward:<br><br>
+                    Scraps power up Achievement Effect<br><br>
+                    Currently: ^<span id="AchRewardEffect7"></span>
+                </div>
+                <div class="achievementReward-container" id="AchRewardDisplay8">
+                    Achievement 34 reward:<br><br>
+                    Scraps power up Achievement Effect<br><br>
+                    Currently: ^<span id="AchRewardEffect8"></span>
+                </div>
+                <div class="achievementReward-container" id="AchRewardDisplay9">
+                    Achievement 35 reward:<br><br>
+                    Scraps power up Achievement Effect<br><br>
+                    Currently: ^<span id="AchRewardEffect9"></span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--THESE SHOULD BE MODALS, NOT POPUPS 😭😭-->
+        <div id="prestigeConfirmation" class="popup hidden">
+            <div style="top: 0px; background-color: rgb(45, 45, 45);">
+                <strong style="font-size: 25px; color: rgb(255, 255, 0)">Hold on!!</strong>
+                <div class="popupCloseButton" onclick="document.getElementById('prestigeConfirmation').className = 'popup hidden'"><div style="transform: translateY(-10px);">&times;</div></div>
+            </div>
+            <div class="popupText">
+                You will lose all your:<br>
+                Scraps,<br>
+                Multiplicators,<br>
+                Extra scrap factories and<br>
+                Bought scrap factories<br><br>
+                In return, you will get Golden Scraps<br><br><br>
+                Are you sure about that?
+
+            </div>
+            <div class="popupButtons">
+                <button class="yesButton" onclick="document.getElementById('prestigeConfirmation').className = 'popup hidden'; prestige()">Yes &check;</button>
+                <button class="noButton" onclick="document.getElementById('prestigeConfirmation').className = 'popup hidden'">No &cross;</button>
+            </div>
+            
+        </div>
+
+        <div id="compressionConfirmation1" class="popup hidden">
+            <div style="top: 0px; background-color: rgb(45, 45, 45);">
+                <strong style="font-size: 25px; color: rgb(255, 255, 0)">Hold on!!</strong>
+                <div class="popupCloseButton" onclick="document.getElementById('compressionConfirmation1').className = 'popup hidden'"><div style="transform: translateY(-10px);">&times;</div></div>
+            </div>
+            <div class="popupText">
+                You will lose all your:<br>
+                Scraps,<br>
+                Multiplicators,<br>
+                Bought scrap factories and Extra scrap factories,<br>
+                Bought super factories and Extra super factories,<br>
+                Golden Scraps and GS Upgrades,<br>
+                Stars,<br>
+                Automation Levels,<br>
+                Prestiges and Prestige Time,<br>
+                Magnets, Steel Beams, Protons and Electrons,<br>
+                NMUs and All RMU Levels,<br>
+                Bricks and Wrenches,<br>
+                NBUs and All RBU Levels,<br>
+                Regenerators and Regeneration Points.
+                <br><br>
+                <br>
+                In return, you will get Boosters<br><br><br>
+                Are you sure about that?
+
+            </div>
+            <div class="popupButtons">
+                <button class="yesButton" onclick="document.getElementById('compressionConfirmation1').className = 'popup hidden'; document.getElementById('compressionConfirmation2').className = 'popup shown'">Yes &check;</button>
+                <button class="noButton" onclick="document.getElementById('compressionConfirmation1').className = 'popup hidden'">No &cross;</button>
+            </div>
+            
+        </div>
+
+        <div id="compressionConfirmation2" class="popup hidden">
+            <div style="top: 0px; background-color: rgb(45, 45, 45);">
+                <strong style="font-size: 25px; color: rgb(255, 255, 0)">You cannot easily do that!!</strong>
+                <div class="popupCloseButton" onclick="document.getElementById('compressionConfirmation2').className = 'popup hidden'"><div style="transform: translateY(-10px);">&times;</div></div>
+            </div>
+            <div class="popupText">
+                Are you sure you want to do that?<br>
+                This cannot be undone!
+            </div>
+            <div class="popupButtons">
+                <button class="yesButton" onclick="document.getElementById('compressionConfirmation2').className = 'popup hidden'; compression()">Yes &check;</button>
+                <button class="noButton" onclick="document.getElementById('compressionConfirmation2').className = 'popup hidden'">No &cross;</button>
+            </div>
+            
+        </div>
+
+        <div id="multiplicatorDetails" class="popup hidden">
+            <div style="top: 0px; background-color: rgb(45, 45, 45);">
+                <strong style="font-size: 25px; color: rgb(255, 255, 0)">Multiplicator Details</strong>
+                <div class="popupCloseButton" onclick="document.getElementById('multiplicatorDetails').className = 'popup hidden'"><div style="transform: translateY(-10px);">&times;</div></div>
+            </div>
+            <div class="popupText">
+                Your multiplicator base is <span id="MultiplicatorBase"></span>x (<span id="NetMultiplierPerMultiplicator"></span>x net)<br>
+                Each multiplicator multiplies your scrap gain by Multiplicator Base<br>
+                Currently: <span id="MultiplicatorEffect"></span>x<br><br>
+                Your Multiplicator effect starts to softcap at <span id="MultiplicatorSoftcap"></span> Multiplicators
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="notifier-container" id="notifier-box">
+            
+        </div>
+
+    </center>
+
+
+</body>
+<script src="javascripts/libraries/break-eternity.js"></script>
+<script src="javascripts/saving.js"></script>
+<script src="javascripts/tab-system.js"></script>
+<script src="javascripts/secret-and-easter-eggs.js"></script>
+<script src="javascripts/notification.js"></script>
+<script src="javascripts/boosters.js"></script>
+<script src="javascripts/magnets.js"></script>
+<script src="javascripts/bricks.js"></script>
+<script src="javascripts/decay.js"></script>
+<script src="javascripts/automation.js"></script>
+<script src="javascripts/factory.js"></script>
+<script src="javascripts/loop.js"></script>
+<script src="javascripts/format.js"></script>
+<script src="javascripts/achievements.js"></script>
+<script src="javascripts/hide-show.js"></script>
+<script src="javascripts/show-and-unlock.js"></script>
+<script src="javascripts/game.js"></script>
+<script src="javascripts/prestige.js"></script>
+<script src="javascripts/news.js"></script>
+
+<script>
+    addEventListener("keydown", function(e) {
+    	var c = e.keyCode;
+        
+	    if (c == 77) {
+            buyMultiplicator('max')
+            buyFactory('max', 0)
+        }
+
+        if (c == 80) {
+           prestigeButtonDoes()
+        }
+    })
+    console.log(
+        "%c NaNeNaN means infinity bug either positive nor negative. If you encounter this bug, just report :)",
+        "background-color: #00ff00; color: #000000; font-family: Trebuchet MS, sans-serif; font-size: 25px;"
+    )
+    notifier.success("Welcome!")
+</script>
+</html>

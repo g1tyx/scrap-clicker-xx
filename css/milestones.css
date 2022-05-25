@@ -1,0 +1,22 @@
+.savingMilestone {
+    width : 242px;
+    height: 181px;
+    transition-duration : 0.2s;
+    font-size: 12px;
+    border-style: solid;
+    border-width: 3px;
+    border-image: linear-gradient(60deg, rgb(0, 0, 255) 50%,  rgb(255, 165, 0) 50%);
+    border-image-slice: 1;
+
+    
+}
+
+.milestoneLocked {
+    background-color: #6b6b6b;
+    color: #000000;
+}
+
+.milestoneUnlocked {
+    background-color: rgb(0, 255, 0);
+    color: #000000;
+}

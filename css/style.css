@@ -1,0 +1,415 @@
+body {
+    color: #ffffff;
+    background : #20222e;
+    font-size: 16px;
+    min-width: 1100px;
+    margin: 0px;
+    user-select: none;
+}
+
+textarea {
+    color: rgb(211, 211, 211);;
+    background-color : #272727;
+    border-style: solid;
+    border-color: rgba(128, 128, 128, 255);
+    border-width: 3px;
+}
+
+*:focus {
+    outline: none;
+}
+
+button {
+    font-size: 15px;
+}
+
+strong, b {
+    font-weight: 7000;
+}
+
+.checkbox {
+    height: 20px;
+    width: 20px;
+}
+
+#news {
+    white-space: nowrap;
+    min-width: 0px;
+    height: 26px;
+    display: inline-block;
+}
+
+#topbar {
+    overflow: hidden;
+}
+
+.centerized {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.locked {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75); 
+    width: 100%;
+}
+
+.achievementLocked {
+    width: 105px;
+    height: 105px;
+    background-color: rgb(75, 75, 75);
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    margin: 2px;
+    font-size: 12px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(255, 0, 0);
+    overflow: hidden;
+    text-shadow: 0px 0px 5px rgb(0, 0, 0);
+}
+
+.achievementUnlocked {
+    width: 105px;
+    height: 105px;
+    background-color: rgb(75, 75, 75);
+    color: rgb(0, 255, 0);
+    font-weight: bold;
+    margin: 2px;
+    font-size: 12px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 255, 0);
+    overflow: hidden;
+    text-shadow: 0px 0px 5px rgb(0, 0, 0);
+}
+/*
+.incompleted {
+    border-color: rgb(255, 0, 0);
+}
+
+.completed {
+    border-color: rgb(0, 255, 0);
+}
+ #94ff88 */
+.bigger1 {
+    color : #59d8ff;
+    border : none;
+    font-size : 32px;
+}
+
+.bigger2 {
+    color : #59d8ff;
+    border : none;
+    font-size : 25px;
+}
+
+.biggerGold1 {
+    color : #ffee00;
+    border : none;
+    font-size : 32px;
+    text-shadow : 0px 0px 5px rgba(255, 255, 0, 1);
+}
+
+.biggerGold2 {
+    color : #ffee00;
+    border : none;
+    font-size : 25px;
+    text-shadow : 0px 0px 5px rgba(255, 255, 0, 1);
+}
+
+.electronText {
+    border : none;
+    text-shadow : 0px 0px 5px rgb(0, 100, 255);
+    animation: electron 5s linear infinite
+}
+
+.protonText {
+    border : none;
+    text-shadow : 0px 0px 5px rgba(255, 0, 0, 1);
+    animation: proton 5s linear infinite;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    background: #000000;
+    border: 5px solid rgb(179, 179, 179);
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.shown {
+    display: block;
+}
+
+/*.popupButtons-container {
+    position: relative;
+}*/
+
+
+/*Text Barrier */
+
+table tr td {
+    text-align: center;
+}
+
+/*table.achievementTable tr td div {
+    width: 120px;
+    height: 120px;
+}*/
+
+.buttonTab {
+    font-size : 25px;
+    border-radius: 10px;
+    color : #000000;
+    background-color : #ffffff;
+    transition-duration : 0.2s;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgba(128, 128, 128, 255);
+}
+
+.productionButton {
+    color : #1aff00;
+    background-color : rgba(0, 79, 0, 255);
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 255);
+    border-style: solid;
+    border-color : #13b900;
+    border-width: 3px;
+    transition-duration: 0.2s;
+}
+
+.productionButton:hover {
+    background-color : #94ff88;
+    color : #0e8f00;
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 0);
+}
+
+.prestigeButton {
+    color : #eeff00;
+    background-color : #4f5500;
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-color : #b0bd00;
+    border-width: 3px;
+    transition-duration: 0.2s;
+}
+
+.prestigeButton:hover {
+    background-color : #eeff00;
+    color : #98a300;
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 0);
+}
+
+.boostersButton {
+    color : rgb(255, 166, 0);
+    border-style : solid;
+    text-shadow : 0px 0px 5px rgb(255, 166, 0);
+    background-color: rgb(95, 62, 0);
+    border-color : rgb(0, 0, 255);
+    border-width : 3px;
+    transition-duration : 0.2s;
+}
+
+.boostersButton:hover {
+    color : rgb(0, 132, 255);
+    border-color : rgb(255, 166, 0);
+    text-shadow : 0px 0px 5px rgb(0, 247, 255);
+    background-color : rgb(0, 0, 80);
+} 
+
+.normalButton {
+    color : #d3d3d3;
+    background-color : #272727;
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 255);
+    border-style: solid;
+    border-color: rgba(128, 128, 128, 1);
+    border-width: 3px;
+    transition-duration: 0.2s;
+}
+
+.normalButton:hover {
+    background-color : #cccccc;
+    color : #5f5f5f;
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 0);
+}
+
+.magnetButton {
+    transition-duration : 0.33s;
+    border-style: solid;
+    background-image: linear-gradient(90deg, rgb(110, 0, 0) 25%, rgb(0, 0, 128) 25%,  rgb(110, 0, 0) 25%, rgb(0, 0, 128) 25%);
+    background-repeat: repeat;
+    background-size: 200%;
+    border-width: 3px;
+    border-image: linear-gradient(120deg, rgb(0, 0, 255) 50%, rgb(220, 0, 0) 50%);
+    border-image-slice: 1;
+    color: rgb(255, 255, 255)
+}
+
+.magnetButton:hover {
+    background-position: 150% 0px;
+}
+
+.steelBeamButton {
+    color: rgb(255, 255, 255);
+    transition-duration: 0.2s;
+    background-color: rgb(102, 72, 26);
+    border-style: solid;
+    border-color: rgb(209, 138, 30);
+    border-width: 3px;
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 1);
+}
+
+.steelBeamButton:hover {
+    color: rgb(0, 0, 0);
+    background-color:  rgb(199, 157, 93);
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 0);
+}
+
+.brickButton {
+    color: rgb(255, 255, 255);
+    transition-duration: 0.2s;
+    background-color: rgb(133, 60, 0);
+    border-style: solid;
+    border-color: rgb(255, 115, 0);
+    border-width: 3px;
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 1);
+}
+
+.brickButton:hover {
+    color: rgb(173, 78, 0);
+    background-color: rgb(255, 183, 124);
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 0);
+}
+
+.electronButton {
+    color : rgb(110, 226, 255);
+    background-color : rgb(0, 77, 87);
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-color : rgb(0, 155, 194);
+    border-width: 3px;
+    transition-duration: 0.2s;
+}
+
+.electronButton:hover {
+    color : rgb(0, 77, 87);
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 0);
+    background-color : rgb(110, 226, 255);
+}
+
+.protonButton {
+    color : rgb(255, 155, 155);
+    background-color : rgb(87, 0, 0);
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-color : rgb(255, 0, 0);
+    border-width: 3px;
+    transition-duration: 0.2s;
+}
+
+.protonButton:hover {
+    color : rgb(87, 0, 0);
+    text-shadow : 0px 0px 5px rgba(0, 0, 0, 0);
+    background-color : rgb(255, 155, 155);
+}
+
+table.magnetTable tr td {
+    padding : 20px;
+}
+
+table.brickTable tr td {
+    padding : 20px;
+}
+
+table.savingMilestoneTable tr td {
+    margin : 50px;
+}
+
+.magnet {
+    font-size: 32px;
+    background: -webkit-linear-gradient(90deg, rgb(252, 103, 103) 50%, rgb(106, 106, 255) 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.steelBeams {
+    color: rgb(199, 139, 50);
+    font-size: 32px;
+}
+
+.brickText {
+    color: rgb(255, 138, 42);
+}
+
+.boosterText {
+    color: rgb(0, 0, 255);
+    text-shadow: -1px -1px 0 #ffa500, 1px -1px 0 #ffa500, -1px 1px 0 #ffa500, 1px 1px 0 #ffa500;  
+}
+
+.rainbow {
+    animation: rainbowColor 5s linear infinite;
+}
+
+.achievementReward-container {
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgba(0, 255, 0, 1);
+    margin: 5px;
+    width: 50%;
+    max-width: 50%;
+}
+
+.buyFactoryButton {
+    height: 50px;
+}
+
+@keyframes rainbowColor{
+    16% {
+        color: rgb(255, 255, 0)
+    }
+    33% {
+        color: rgb(0, 255, 0)
+    }
+    50% {
+        color: rgb(0, 255, 255)
+    }
+    67% {
+        color: rgb(0, 0, 255)
+    }
+    83% {
+        color: rgb(255, 0, 255)
+    }
+    0%, 100% {
+        color: rgb(255, 0, 0)
+    }
+}
+
+@keyframes electron{
+    50% {
+        color: rgb(100, 200, 255)
+    }
+
+    0%, 100% {
+        color: rgb(0, 100, 255)
+    }
+}
+
+@keyframes proton{
+    50% {
+        color: rgb(255, 100, 100)
+    }
+    0%, 100% {
+        color: rgb(255, 0, 0)
+    }
+}

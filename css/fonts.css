@@ -1,0 +1,13 @@
+@font-face {
+    src: url('../fonts/MonospaceTypewriter.ttf') format("truetype");
+    font-family: HevipelleFont;
+}
+
+@font-face {
+    src: url('../fonts/MinecraftFont.otf') format("opentype");
+    font-family: MinecraftFont;
+}
+
+* {
+    font-family: HevipelleFont;
+}

@@ -1,0 +1,11 @@
+.automator-container {
+    width: 500px;
+    height: 175px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #b0bd00;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+}
+

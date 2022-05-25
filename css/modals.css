@@ -1,0 +1,29 @@
+.popupText {
+    font-size: 15px;
+    max-height: calc(100% - 65px);
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.popupButtons {
+    position: static;
+    background-color: black;
+}
+
+.popupCloseButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 35px;
+    background-color: transparent;
+    height: 34px;
+    max-height: 34px;
+    width: 38px;
+    max-width: 38px;
+    color: white;
+    transition-duration: 0.25s;
+}
+
+.popupCloseButton:hover{
+    background-color: rgb(255, 0, 0);
+}
