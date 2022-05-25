@@ -475,7 +475,7 @@ var cnItems = {
     "into Inflator": "进入充气机",
     "Exponential boost is for the weak": "指数级提升是针对弱者的",
     "Yes ✓": "是 ✓",
-    "": "",
+    "\"Still 5.635e17 scraps, huh?\" - Scrapman with 6.471e1,224 scraps": "“还是 5.635e17 碎片，嗯？” - 有 6.471e1,224 碎片的 废料人",
     "": "",
     "": "",
     "": "",
@@ -727,6 +727,8 @@ var cnExcludeWhole = [
     /^([\d\.]+)e([\d\.,]+)$/,
     /^x([\d\.]+)e([\d\.,]+)$/,
     /^([\d\.]+)e([\d\.,]+)x$/,
+    /^x([\d\.]+)e([\d\.,]+)$/,
+    /^([\d\.]+)e([\d\.,]+) \(\+([\d\.]+)\)$/,
     /^[\u4E00-\u9FA5]+$/
 ];
 var cnExcludePostfix = [
