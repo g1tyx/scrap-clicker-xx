@@ -96,7 +96,7 @@ var cnItems = {
     "Sacrifice all your steel beams": "牺牲你所有的钢梁",
     "Saving Milestones": "保存里程碑",
     "Scaling Weakness (SW):": "缩放弱点（SW）：",
-    "Scientific": "科学的",
+    "Scientific": "科学",
     "Scrap boost per achievement is increased from 1.30x to 2.00x.": "每个成就的废料提升从 1.30 倍增加到 2.00 倍。",
     "Scrap Clicker++": "废料点击器++",
     "Synergizers.": "协同作用",
