@@ -629,7 +629,7 @@ var cnItems = {
     "Once upon a time, you died, game over, the end, bye bye.": "曾几何时，你死了，游戏结束，结束，再见。",
     "Money is for the weak": "钱是给弱者的",
     "You just need 9,999 more stars to beat Brickman": "你只需要再多 9,999 颗星星就可以击败 砖块人",
-    "Speedrunning Instagram": "极速跑 Instagram",
+    "Speedrunning Instagram": "快速运行 Instagram",
     "← Dream face reveal UNMASKED!! 😍💓": "← 梦露露面！！ 😍💓",
     "YOU GOT A RICKROLL, HAHAHAAAA!!!!": "你有一个人力车，哈哈哈！！！！",
     "Yet Another Merge Game good, Pixel Gun 3D bad": "又一个合并游戏不错，Pixel Gun 3D 不好",
