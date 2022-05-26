@@ -512,7 +512,7 @@ var cnItems = {
     "into Synergizer II": "进入增效剂 II",
     "into Synergizers": "进入增效剂",
     "into Synergizers II": "进入增效剂 II",
-    "": "",
+    "(There is brick self-boost, so you can get even more)": "（有砖块自提升，你可以获得更多）",
     "": "",
     "": "",
     "": "",
